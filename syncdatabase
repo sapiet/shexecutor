@@ -1,0 +1,23 @@
+#!/bin/bash
+
+source import && \
+
+DIR=$(PWD)
+filename=backup-$(date +"%d-%m-%Y").sql
+localBackupDir=$local_backup_directory
+localBackupPath=$localBackupDir/$filename
+temporaryBackupFilename=backup.sql
+
+echo "Creating $temporaryBackupFilename"
+ssh $remote_server "mysqldump -u$remote_database_user -p$remote_database_password $remote_database_name > $temporaryBackupFilename"
+
+echo "Downloading $temporaryBackupFilename > $localBackupPath"
+mkdir -p "$localBackupDir"
+scp $remote_server:$temporaryBackupFilename "$localBackupPath"
+ssh $remote_server "rm $temporaryBackupFilename"
+
+echo "Local database update..."
+mysql -u$local_database_user -p$local_database_password -D $local_database_name -e "DROP DATABASE $local_database_name; CREATE DATABASE $local_database_name"
+mysql -u$local_database_user -p$local_database_password $local_database_name < "$localBackupPath"
+
+echo DONE.

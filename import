@@ -1,0 +1,19 @@
+#!/bin/sh
+
+echo Available:
+echo
+ls $0-env/
+echo
+
+echo Which one ?
+read choice
+
+while read line
+do
+    if echo $line | grep -F = &>/dev/null
+    then
+        name=$(echo "$line" | cut -d '=' -f 1)
+        value=$(echo "$line" | cut -d '=' -f 2-)
+        declare $name=$value
+    fi
+done < $0-env/$choice
