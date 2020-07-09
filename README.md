@@ -14,3 +14,5 @@ Copy `environments.yaml.dist` to `environments.yaml` and configure targets
 ```./syncdatabase [target]```
 
 ```./syncfiles [target]```
+
+```./exec [target] [command]```
