@@ -1,6 +1,6 @@
 #!/bin/sh
 
 source import && \
-mkdir -p $destination && \
-scp -r $source $destination && \
+mkdir -p $files_destination && \
+scp -r $files_source $files_destination && \
 echo DONE.

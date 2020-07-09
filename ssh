@@ -1,0 +1,4 @@
+#!/bin/sh
+
+source import && \
+ssh -t $user@$host

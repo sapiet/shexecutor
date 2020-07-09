@@ -1,0 +1,16 @@
+name:
+  host:
+  user:
+
+  remote_database_name:
+  remote_database_user:
+  remote_database_password:
+
+  local_backup_directory:
+
+  local_database_name:
+  local_database_user:
+  local_database_password:
+
+  files_source:
+  files_destination:

@@ -1,11 +1,16 @@
-# Synchronisation fichiers / base de données
+# Shexecutor
+Configuration files based executions for Shell.
 
-## Commandes
-
-```./syncdatabase```
-
-```./syncfiles```
+Require PHP
 
 ## Configuration
 
-Dupliquer un *-env/.example permet de configurer une commande dont le nom est celui du fichier
+Copy `environments.yaml.dist` to `environments.yaml` and configure targets
+
+## Commands
+
+```./ssh [target]```
+
+```./syncdatabase [target]```
+
+```./syncfiles [target]```

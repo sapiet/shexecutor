@@ -1,0 +1,27 @@
+#!/usr/bin/php
+<?php
+
+use Symfony\Component\Yaml\Yaml;
+
+require 'vendor/autoload.php';
+
+const FOLDER = '.environments';
+
+$environments = Yaml::parseFile('environments.yaml');
+
+foreach ($environments as $name => $environment) {
+    if (false === is_dir(FOLDER)) {
+        mkdir(FOLDER);
+    }
+    file_put_contents(sprintf('%s/%s', FOLDER, $name), render($environment));
+}
+
+function render(array $environment) {
+    $lines = [];
+
+    foreach ($environment as $key => $value) {
+        $lines[] = sprintf('%s=%s', $key, $value);
+    }
+
+    return implode(PHP_EOL, $lines).PHP_EOL;
+}

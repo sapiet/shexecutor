@@ -1,12 +1,16 @@
 #!/bin/sh
 
-echo Available:
-echo
-ls $0-env/
-echo
+php build-env
 
-echo Which one ?
-read choice
+if [ -z "$1" ]; then
+  echo Available targets:
+  echo
+  ls .environments/
+  echo
+
+  echo Usage $0 [target]
+  exit
+fi
 
 while read line
 do
@@ -16,4 +20,4 @@ do
         value=$(echo "$line" | cut -d '=' -f 2-)
         declare $name=$value
     fi
-done < $0-env/$choice
+done < .environments/$1
