@@ -1,3 +1,4 @@
 .environments
 .idea
 environments.yaml
+vendor
