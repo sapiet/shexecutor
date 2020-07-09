@@ -2,5 +2,5 @@
 
 source import && \
 mkdir -p $files_destination && \
-scp -r $files_source $files_destination && \
+scp -r $user@$host:$files_source $files_destination && \
 echo DONE.
