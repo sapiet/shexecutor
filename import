@@ -1,6 +1,15 @@
 #!/bin/sh
 
-php build-env
+if command -v php &> /dev/null
+then
+  php build-env/php
+elif command -v node &> /dev/null
+then
+  node build-env/js
+else
+  echo 'PHP or NodeJS must be installed'
+  exit
+fi
 
 if [ -z "$1" ]; then
   echo Available targets:

@@ -1,0 +1,22 @@
+{
+  "name": "shexecutor",
+  "version": "1.0.0",
+  "description": "Configuration files based executions for Shell.",
+  "main": "build-env/build-env.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sapiet/shexecutor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sapiet/shexecutor/issues"
+  },
+  "homepage": "https://github.com/sapiet/shexecutor#readme",
+  "dependencies": {
+    "yaml": "^1.10.0"
+  }
+}

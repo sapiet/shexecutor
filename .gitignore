@@ -2,3 +2,4 @@
 .idea
 environments.yaml
 vendor
+node_modules

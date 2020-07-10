@@ -1,0 +1,31 @@
+const YAML = require('yaml')
+const fs = require('fs');
+
+const environmentsFolder = '.environments';
+const environments = YAML.parse(fs.readFileSync('environments.yaml').toString());
+
+const render = (environment) => {
+    const rendered = []
+    Object.keys(environment).map(key => rendered.push(`${key}=${environment[key]}`))
+
+    return rendered.join('\n') + '\n';
+}
+
+const buildEnvironments = () => {
+    for (const name in environments) {
+        fs.writeFileSync(`${environmentsFolder}/${name}`, render(environments[name]))
+    }
+}
+
+const createDirectory = () => {
+    if (false === fs.existsSync(environmentsFolder)) {
+        fs.mkdirSync(environmentsFolder)
+    }
+}
+
+const init = () => {
+    createDirectory()
+    buildEnvironments()
+}
+
+init()

@@ -9,10 +9,11 @@ const FOLDER = '.environments';
 
 $environments = Yaml::parseFile('environments.yaml');
 
+if (false === is_dir(FOLDER)) {
+    mkdir(FOLDER);
+}
+
 foreach ($environments as $name => $environment) {
-    if (false === is_dir(FOLDER)) {
-        mkdir(FOLDER);
-    }
     file_put_contents(sprintf('%s/%s', FOLDER, $name), render($environment));
 }
 
