@@ -9,12 +9,12 @@ localBackupPath=$localBackupDir/$filename
 temporaryBackupFilename=backup.sql
 
 echo "Creating $temporaryBackupFilename"
-ssh $user@$host "mysqldump -u$remote_database_user -p$remote_database_password $remote_database_name > $temporaryBackupFilename"
+ssh $user@$host -p$port "mysqldump -u$remote_database_user -p$remote_database_password $remote_database_name > $temporaryBackupFilename"
 
 echo "Downloading $temporaryBackupFilename > $localBackupPath"
 mkdir -p "$localBackupDir"
-scp $user@$host:$temporaryBackupFilename "$localBackupPath"
-ssh $user@$host "rm $temporaryBackupFilename"
+scp -P$port $user@$host:$temporaryBackupFilename "$localBackupPath"
+ssh $user@$host -p$port "rm $temporaryBackupFilename"
 
 echo "Local database update..."
 mysql -u$local_database_user -p$local_database_password -D $local_database_name -e "DROP DATABASE $local_database_name; CREATE DATABASE $local_database_name"
